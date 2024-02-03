@@ -35,13 +35,27 @@ while True:
 while keep_playing == 'S':
 
     # Set up the game
-    round_barrel_size = int(input('\nIngrese tamaño del barril: '))
     while True:
-        round_bullets = int(input('Ingrese el número de balas: '))
-        if round_bullets > round_barrel_size:
-            print('\nDemasiadas balas para el barril.\n')
-        else:
-            break
+        try:
+            round_barrel_size = int(input('\nIngrese tamaño del barril: '))
+            if round_barrel_size > 0:
+                break
+            else:
+                print('\nA ese barril no le entran balas.\n')
+        except(Exception,):
+            print('\nRespuesta no válida.\n')
+
+    while True:
+        try:
+            round_bullets = int(input('Ingrese el número de balas: '))
+            if round_bullets > round_barrel_size:
+                print('\nDemasiadas balas para el barril.\n')
+            if round_bullets < 1:
+                print('\nNo hay balas en el barril.\n')
+            else:
+                break
+        except(Exception,):
+            print('\nRespuesta no válida.\n')
 
     game = Barrel(round_barrel_size, round_bullets)
 
